@@ -3,7 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!--My Styles-->
     <link rel="stylesheet" href="./index.css" />
+    <!--My Scripts-->
     <script src="./index.js" type="module" defer></script>
     <title>PollyGlot App</title>
   </head>
@@ -38,8 +47,9 @@
                 value="french"
                 required
               />
-              <label for="french">French</label>
-
+              <label for="french">French 🇫🇷</label>
+            </div>
+            <div class="radio-group">
               <input
                 type="radio"
                 id="spanish"
@@ -47,8 +57,9 @@
                 value="spanish"
                 required
               />
-              <label for="spanish">Spanish</label>
-
+              <label for="spanish">Spanish 🇪🇸</label>
+            </div>
+            <div class="radio-group">
               <input
                 type="radio"
                 id="japanese"
@@ -56,9 +67,9 @@
                 value="japanese"
                 required
               />
-              <label for="japanese">Japanese</label>
+              <label for="japanese">Japanese 🇯🇵</label>
             </div>
-            <button class="language-selection__button"></button>
+            <button class="language-selection__button">Translate</button>
           </section>
         </form>
       </section>
