@@ -22,12 +22,44 @@
     <main>
       <section class="translator">
         <form id="translator-form">
-          <label for="input-text" class="translator__input"></label>
+          <label for="input-text" class="translator__input"
+            >Text to translate 👇</label
+          >
           <textarea name="prompt" id="input-text"></textarea>
-          <label for="language-selection" class="translator__language"></label>
-          <fieldset>
-            <legend></legend>
-          </fieldset>
+          <label for="language-selection" class="translator__language"
+            >Select language 👇</label
+          >
+          <section class="language-selection">
+            <div class="radio-group">
+              <input
+                type="radio"
+                id="french"
+                name="target-language"
+                value="french"
+                required
+              />
+              <label for="french">French</label>
+
+              <input
+                type="radio"
+                id="spanish"
+                name="target-language"
+                value="spanish"
+                required
+              />
+              <label for="spanish">Spanish</label>
+
+              <input
+                type="radio"
+                id="japanese"
+                name="target-language"
+                value="japanese"
+                required
+              />
+              <label for="japanese">Japanese</label>
+            </div>
+            <button class="language-selection__button"></button>
+          </section>
         </form>
       </section>
     </main>
