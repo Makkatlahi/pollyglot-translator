@@ -39,6 +39,21 @@ async function main(inputTextValue, selectedLanguageValue) {
 //   console.error("The sample encountered an error:", err);
 // });
 
+const renderTranslation = (inputTextValue, translation) => {
+  const translatorInput = document.querySelector(".translator__input");
+  const translatorLanguage = document.querySelector(".translator__language");
+  const languageSelection = document.querySelector(".language-selection");
+
+  translatorInput.textContent = inputTextValue;
+  translatorInput.textContent = "Original text 👇";
+  translatorLanguage.textContent = "Your translation 👇";
+  languageSelection.innerHTML = "";
+  languageSelection.innerHTML = `
+    <textarea name="prompt" id="input-text">${translation}</textarea>
+    <button class="start-over__button">Start Over</button>a
+    `;
+};
+
 const handleSubmit = async (e) => {
   e.preventDefault();
   const inputTextValue = document.getElementById("input-text").value;
@@ -46,10 +61,19 @@ const handleSubmit = async (e) => {
     'input[name="target-language"]:checked'
   );
   if (inputTextValue && selectedLanguage) {
-    await main(inputTextValue, selectedLanguage.value);
+    const translation = await main(inputTextValue, selectedLanguage.value);
+    console.log(translation);
+    renderTranslation(inputTextValue, translation);
   } else {
     alert("Please enter text and select a language");
   }
 };
 
+const handleReset = (e) => {
+  if (e.target.classList.contains("start-over__button")) {
+    console.log("Clicked!");
+  }
+};
+
 translatorForm.addEventListener("submit", handleSubmit);
+document.addEventListener("click", handleReset);
