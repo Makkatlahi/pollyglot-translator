@@ -50,7 +50,7 @@ const renderTranslation = (inputTextValue, translation) => {
   languageSelection.innerHTML = "";
   languageSelection.innerHTML = `
     <textarea name="prompt" id="input-text">${translation}</textarea>
-    <button class="start-over__button">Start Over</button>a
+    <button class="start-over__button">Start Over</button>
     `;
 };
 
@@ -65,13 +65,13 @@ const handleSubmit = async (e) => {
     console.log(translation);
     renderTranslation(inputTextValue, translation);
   } else {
-    alert("Please enter text and select a language");
+    alert("Please enter text and select a language"); // change to dom manipulation...
   }
 };
 
 const handleReset = (e) => {
   if (e.target.classList.contains("start-over__button")) {
-    console.log("Clicked!");
+    window.location.href = "./index.html";
   }
 };
 
