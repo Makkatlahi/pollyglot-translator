@@ -40,18 +40,22 @@ async function main(inputTextValue, selectedLanguageValue) {
 // });
 
 const renderTranslation = (inputTextValue, translation) => {
-  const translatorInput = document.querySelector(".translator__input");
-  const translatorLanguage = document.querySelector(".translator__language");
-  const languageSelection = document.querySelector(".language-selection");
-
-  translatorInput.textContent = inputTextValue;
-  translatorInput.textContent = "Original text 👇";
-  translatorLanguage.textContent = "Your translation 👇";
-  languageSelection.innerHTML = "";
-  languageSelection.innerHTML = `
+  const translatorSection = document.querySelector(".translator");
+  translatorSection.innerHTML = "";
+  const translationDiv = document.createElement("div");
+  translationDiv.classList.add("translation");
+  translationDiv.innerHTML = `
+    <label for="input-text" class="translator__input"
+            >Original text 👇</label
+          >
+          <textarea name="prompt" id="input-text">${inputTextValue}</textarea>
+          <label for="language-selection" class="translator__language"
+            >Your translation 👇</label
+          >
     <textarea name="prompt" id="input-text">${translation}</textarea>
     <button class="start-over__button">Start Over</button>
     `;
+  translatorSection.appendChild(translationDiv);
 };
 
 const handleSubmit = async (e) => {

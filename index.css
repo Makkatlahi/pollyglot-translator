@@ -54,7 +54,14 @@ main {
   margin: 30px 15px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding-bottom: 2.5rem;
+}
+
+.translation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #translator-form {
@@ -105,7 +112,8 @@ main {
   max-width: 322px;
 }
 
-.language-selection__button {
+.language-selection__button,
+.start-over__button {
   width: 322px;
   border-radius: 6px;
   background-color: #035a9d;
@@ -114,14 +122,15 @@ main {
   color: #ffffff;
   padding: 14px 0;
   margin-top: 39px;
-  /* margin-bottom: 46px; */
   border: none;
   cursor: pointer;
   transition: 0.5s all ease-in-out;
 }
 
 .language-selection__button:hover,
-.language-selection__button:focus {
+.language-selection__button:focus,
+.start-over__button:hover,
+.start-over__button:focus {
   opacity: 0.8;
   transform: scale(1.1);
 }
