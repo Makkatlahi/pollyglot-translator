@@ -1,12 +1,33 @@
+// Create: netlify/functions/translate.js
 export async function handler(event, context) {
+  // Handle CORS for local development
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Content-Type": "application/json",
+  };
+
+  // Handle preflight requests
+  if (event.httpMethod === "OPTIONS") {
+    return {
+      statusCode: 200,
+      headers,
+      body: "",
+    };
+  }
+
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      body: "Method Not Allowed",
+      headers,
+      body: JSON.stringify({ error: "Method Not Allowed" }),
     };
   }
+
   try {
     const { text, language } = JSON.parse(event.body);
+
     const response = await fetch(
       "https://models.github.ai/inference/chat/completions",
       {
@@ -33,17 +54,25 @@ export async function handler(event, context) {
         }),
       }
     );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("API Error:", response.status, errorText);
+      throw new Error(`API request failed: ${response.status}`);
+    }
+
     const data = await response.json();
     return {
       statusCode: 200,
+      headers,
       body: JSON.stringify(data),
     };
   } catch (error) {
+    console.error("Translation error:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({
-        error: error.message,
-      }),
+      headers,
+      body: JSON.stringify({ error: error.message }),
     };
   }
 }
