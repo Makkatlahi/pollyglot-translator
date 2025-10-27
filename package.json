@@ -1,15 +1,13 @@
 {
-  "name": "Scrim-s05rqc4",
-  "description": "https://scrimba.com/fullstack-path-c0fullstack/~0xrr",
+  "name": "pollyglot-translator",
+  "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "start": "vite",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
-  "dependencies": {
-    "dotenv": "^17.2.3",
-    "openai": "^6.6.0",
-    "vite": "latest"
+  "devDependencies": {
+    "vite": "^7.1.12"
   }
 }
