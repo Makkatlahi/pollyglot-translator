@@ -1,31 +1,38 @@
-// import OpenAI from "openai";
-// const token = import.meta.env.VITE_OPENAI_API_KEY;
+import OpenAI from "openai";
+const token = import.meta.env.VITE_OPENAI_API_KEY;
 
 // const token = process.env["GITHUB_TOKEN"];
-// const endpoint = "https://models.github.ai/inference";
-// const model = "openai/gpt-4.1";
+const endpoint = "https://models.github.ai/inference";
+const model = "openai/gpt-4.1";
 const translatorForm = document.getElementById("translator-form");
 
 async function main(inputTextValue, selectedLanguageValue) {
-  try {
-    const response = await fetch("./netlify/functions/translate.js", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+  const client = new OpenAI({
+    baseURL: endpoint,
+    apiKey: token,
+    dangerouslyAllowBrowser: true,
+  });
+
+  const response = await client.chat.completions.create({
+    messages: [
+      {
+        role: "system",
+        content: `You are a language expert and can translate anything into ${selectedLanguageValue}. Translate the given text.`,
       },
-      body: JSON.stringify({
-        text: inputTextValue,
-        language: selectedLanguageValue,
-      }),
-    });
-    const data = await response.json();
-    const translation = data.choices[0].message.content;
-    console.log(translation);
-    return translation;
-  } catch (error) {
-    console.error("Translation error: ", error);
-    throw error;
-  }
+      {
+        role: "user",
+        content: `${inputTextValue}`,
+      },
+    ],
+    temperature: 1,
+    top_p: 1,
+    model: model,
+    max_tokens: 150,
+  });
+
+  const translation = response.choices[0].message.content;
+  console.log(translation);
+  return translation;
 }
 
 // main().catch((err) => {
