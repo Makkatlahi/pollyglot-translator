@@ -1,5 +1,6 @@
-// Create: netlify/functions/translate.js
-export async function handler(event, context) {
+const fetch = require("node-fetch"); // Add this if needed
+
+exports.handler = async (event, context) => {
   // Handle CORS for local development
   const headers = {
     "Access-Control-Allow-Origin": "*",
@@ -75,4 +76,4 @@ export async function handler(event, context) {
       body: JSON.stringify({ error: error.message }),
     };
   }
-}
+};
